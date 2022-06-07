@@ -1,14 +1,25 @@
 .card {
   width: 90%;
   margin: 0 auto;
+  margin-bottom: 1.5rem;
 }
 
 .card p {
   font-size: 1.5rem;
+  text-align: center;
+  padding: 1rem;
+  font-weight: 700;
 }
 
 .card img {
   height: 100%;
   width: 100%;
   display: block;
+}
+
+.card__description span{
+  display: block;
+  text-align: center;
+  padding: 18px 0;
+  font-size: 15px;
 }
