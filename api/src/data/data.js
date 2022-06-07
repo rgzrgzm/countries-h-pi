@@ -1,11 +1,11 @@
 const axios = require("axios");
 const { Country } = require("../db");
 
-// Get Data API & save in DB
+// Get Data from API & save in DB
 const getData = async () => {
   const url = "https://restcountries.com/v3.1/all";
   
-  console.log("getting data");
+  console.log("Fetching data...");
 
   try {
     const { data } = await axios(url);
@@ -14,7 +14,7 @@ const getData = async () => {
       return {
         name: e.name.common,
         id: e.cca3,
-        flag: e.flag ? e.flag : "Not found",
+        flag: e.flags ? e.flags.png : "Not found",
         capital: e.capital ? e.capital[0] : "Not found",
         subregion: e.subregion ? e.subregion : "Not found",
         area: e.area,
@@ -39,7 +39,7 @@ const getData = async () => {
       });
     });
 
-    console.log("DB SUCCESS");
+    console.log("DB Loaded ✔");
   } catch (error) {
     console.log(error);
   }

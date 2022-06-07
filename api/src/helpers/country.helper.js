@@ -3,9 +3,11 @@ const { Country, Activity } = require("../db");
 
 const getCountriesList = async () => {
   try {
+    //Return list of countries
     const countries = await Country.findAll({
       attributes: ["id", "name", "capital","flag", "continents", "poblation", "subregion", "area"],
     });
+    
     return countries;
   } catch (error) {
     throw error;
