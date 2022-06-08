@@ -38,8 +38,10 @@ const Home = () => {
   };
 
   const handleChangeByRegion = (e) => {
-    dispatch(filterByContinents(e.target.value));
-    setCurrentPage(1);
+    if (e.target.value !== "Select") {
+      dispatch(filterByContinents(e.target.value));
+      setCurrentPage(1);
+    }
   };
 
   const handleChangeSort = (e) => {
