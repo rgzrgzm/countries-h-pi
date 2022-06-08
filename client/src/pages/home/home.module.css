@@ -1,4 +1,9 @@
 .home__container{
-    padding-top: 40px;
+    padding: 0 10px;
     font-size: 10px;
+}
+
+.home__tap{
+    display: flex;
+    justify-content: space-between;
 }
