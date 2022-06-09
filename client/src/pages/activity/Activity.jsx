@@ -31,9 +31,24 @@ const Activity = () => {
       return;
     }
 
-    const newActivity = { name, difficulty, duration, season, countries: countriesAdded };
+    const newActivity = {
+      name,
+      difficulty,
+      duration,
+      season,
+      countries: countriesAdded,
+    };
 
     dispatch(createActivity(newActivity));
+
+    setName("");
+    setDifficulty("");
+    setDuration("");
+    setSeason("");
+    setCountrySearched("");
+    setCountriesAdded([]);
+
+    setAlert({ msg: "Activity created succesfully!", type: "success" });
   };
 
   const handleSearchCountry = (e) => {
@@ -59,6 +74,7 @@ const Activity = () => {
         <div>
           <label htmlFor="name">Name:</label>
           <input
+            value={name}
             type="text"
             name="name"
             placeholder="Ski, remo, surf..."
@@ -69,6 +85,7 @@ const Activity = () => {
         <div>
           <label htmlFor="difficulty">Difficulty:</label>
           <select
+            value={difficulty}
             name="difficulty"
             onChange={(e) => setDifficulty(e.target.value)}
           >
@@ -84,6 +101,7 @@ const Activity = () => {
         <div>
           <label htmlFor="duration">Duration:</label>
           <input
+            value={duration}
             type="text"
             name="duration"
             placeholder="10hrs..."
@@ -93,7 +111,11 @@ const Activity = () => {
 
         <div>
           <label htmlFor="season">Season:</label>
-          <select name="season" onChange={(e) => setSeason(e.target.value)}>
+          <select
+            value={season}
+            name="season"
+            onChange={(e) => setSeason(e.target.value)}
+          >
             <option defaultChecked> -- Select -- </option>
             <option value="spring">Spring</option>
             <option value="summer">Summer</option>
