@@ -2,21 +2,46 @@ const { createActivity } = require("../helpers/activity.helper");
 const { Country, Activity } = require("../db");
 
 const createActivities = async (req, res) => {
-  // const { name, dificulty, duration, season, countryID } = req.body;
+  const { name, difficulty, duration, season, countries } = req.body;
+  console.log(name);
+  
+  console.log(req.body);
 
+  //create new activity
   try {
-    const newActivity = await createActivity(req.body);
-    if (!newActivity) {
-      throw new Error("Activity can not be created");
-    }
+    const newActivity = await Activity.create({
+      name: name,
+      difficulty: difficulty,
+      duration: duration,
+      season: season,
+    });
 
-    return res
-      .status(201)
-      .json({ msg: "Activity created succesfully", newActivity });
+    const country = await Country.findAll({
+      where: {
+        name: countries,
+      },
+    });
+
+    // Insert country on a new activity
+    await newActivity.addCountries(country);
+    return res.json(newActivity);
   } catch (error) {
     console.log(error);
-    return res.status(400).json({ error: error.message });
   }
+
+  // try {
+  //   const newActivity = await createActivity(req);
+  //   if (!newActivity) {
+  //     throw new Error("Activity can not be created");
+  //   }
+
+  //   return res
+  //     .status(201)
+  //     .json({ msg: "Activity created succesfully", newActivity });
+  // } catch (error) {
+  //   console.log(error);
+  //   return res.status(400).json({ error: error.message });
+  // }
 };
 
 // const createActivities = async (req, res) => {

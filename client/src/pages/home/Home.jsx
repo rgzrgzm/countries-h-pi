@@ -2,12 +2,17 @@ import React from "react";
 import styles from "./home.module.css";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterByContinents, getCountries } from "../../redux/actions";
+import {
+  filterByContinents,
+  filterByPoblation,
+  getCountries,
+  sortByAsc,
+} from "../../redux/actions";
 import Card from "../../components/card/Card";
 import Sort from "../../components/sort/Sort";
 import Pagination from "../../components/pagination/Pagination";
 import InputSearch from "../../components/inputSearch/InputSearch";
-import { sortByAsc } from "../../redux/actions";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -52,19 +57,30 @@ const Home = () => {
     }
   };
 
+  const handleChangeSortByPoblation = (e) => {
+    if (e.target.value !== "Select") {
+      dispatch(filterByPoblation(e.target.value));
+      setOrder(`Order ${e.target.value}`);
+      setCurrentPage(1);
+    }
+  };
+
   return (
     <div className={styles.home__container}>
       <div className={styles.home__tap}>
         <InputSearch setIsSearched={setIsSearched} />
-        <p>Activity</p>
+        <Link to="/activity">Activity</Link>
       </div>
 
       <Sort
+        order={order}
         handleChangeByRegion={handleChangeByRegion}
         handleChangeSort={handleChangeSort}
+        handleChangeSortByPoblation={handleChangeSortByPoblation}
       />
 
       {isSearched ? (
+        /* If user search a country on InputSearch => Searched view */
         <div className="searched">
           <button onClick={() => setIsSearched(false)}>Back</button>
           {searchedCountries?.map((country) => (
@@ -72,6 +88,7 @@ const Home = () => {
           ))}
         </div>
       ) : (
+        // Default List Of Countries view
         <>
           {totalCountries?.map((country) => (
             <Card key={country.id} country={country} />

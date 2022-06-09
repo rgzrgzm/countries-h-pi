@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import InputSearch from "../inputSearch/InputSearch";
 import styles from "./navbar.module.css";
 
 const Navbar = () => {

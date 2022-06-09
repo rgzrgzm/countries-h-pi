@@ -50,8 +50,8 @@ function rootReducer(state = initialState, action) {
       };
 
     case "FILTER_BY_CONTINENT":
-      const allCountries = state.allCountries;
-      const continentFiltered =
+      let allCountries = state.allCountries;
+      let continentFiltered =
         action.payload === "all"
           ? allCountries
           : allCountries.filter(
@@ -60,6 +60,33 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         countries: continentFiltered,
+      };
+
+    case "FILTER_BY_POBLATION":
+      let sortByPoblation =
+        action.payload === "biggest"
+          ? state.countries.sort(function (a, b) {
+              if (a.poblation > b.poblation) {
+                return -1;
+              }
+              if (b.poblation > a.poblation) {
+                return 1;
+              }
+
+              return 0;
+            })
+          : state.countries.sort(function (a, b) {
+              if (a.poblation > b.poblation) {
+                return 1;
+              }
+              if (b.poblation > a.poblation) {
+                return -1;
+              }
+              return 0;
+            });
+      return {
+        ...state,
+        countries: sortByPoblation,
       };
 
     default:

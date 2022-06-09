@@ -1,11 +1,20 @@
-.sort{
-    display: flex;
-    justify-content: space-between;
-    padding: 15px 0;
+.sort {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 15px 0;
 }
 
+.sort__select {
+  display: flex;
+  
+}
 
-
-.sort__select{
-
+.sort__select:nth-child(2){
+    display: flex;
+    justify-content: space-between;
+}
+.sort__select span{
+  margin-right: 5px;
 }

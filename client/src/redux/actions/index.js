@@ -28,7 +28,6 @@ export function getCountries() {
 }
 
 export function searchCountriesByName(name) {
-  console.log(name);
   return async function (dispatch) {
     try {
       const { data } = await axios(
@@ -61,4 +60,24 @@ export function filterByContinents(value) {
   };
 }
 
+export function filterByPoblation(value) {
+  return {
+    type: "FILTER_BY_POBLATION",
+    payload: value,
+  };
+}
 
+export function createActivity(payload) {
+  console.log(payload);
+  return async function (dispatch) {
+    try {
+      const newAct = await axios.post(
+        "http://localhost:3001/activities",
+        payload
+      );
+      return newAct;
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+}

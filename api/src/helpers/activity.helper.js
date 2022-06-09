@@ -1,13 +1,13 @@
 const { Country, Activity } = require("../db");
 
-const createActivity = async (activity) => {
-  const { name, dificulty, duration, season, countryID } = activity;
+const createActivity = async (req) => {
+  const { name, difficulty, duration, season, countries } = req.body;
 
   try {
     //Create new activity
     const newActivity = await Activity.create({
       name,
-      dificulty,
+      difficulty,
       duration,
       season,
     });
@@ -19,12 +19,12 @@ const createActivity = async (activity) => {
     //Search country in db
     const country = await Country.findAll({
       where: {
-        id: countryID,
+        name: countries,
       },
     });
 
     // Insert country on a new activity
-    newActivity.addCountries(country)
+    await newActivity.addCountries(country);
     return newActivity;
   } catch (error) {
     console.log(error);
