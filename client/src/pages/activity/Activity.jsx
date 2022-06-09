@@ -28,6 +28,11 @@ const Activity = () => {
 
     if (name === "" || difficulty === "" || duration === "" || season === "") {
       setAlert({ msg: "Todos los campos son necesarios", type: "error" });
+
+      setTimeout(() => {
+        setAlert({});
+      }, 3000);
+
       return;
     }
 
@@ -49,6 +54,9 @@ const Activity = () => {
     setCountriesAdded([]);
 
     setAlert({ msg: "Activity created succesfully!", type: "success" });
+    setTimeout(() => {
+      setAlert({});
+    }, 3000);
   };
 
   const handleSearchCountry = (e) => {
