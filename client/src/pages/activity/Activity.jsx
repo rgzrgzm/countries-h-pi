@@ -82,11 +82,11 @@ const Activity = () => {
   };
 
   return (
-    <div>
-      <h3>Create activities</h3>
+    <div className={styles.activity}>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <h3>¡Create new activities!</h3>
 
-      <form onSubmit={handleSubmit}>
-        <div>
+        <div className={styles.form__input}>
           <label htmlFor="name">Name:</label>
           <input
             className={alert.type === "error" ? styles.error : null}
@@ -98,7 +98,7 @@ const Activity = () => {
           />
         </div>
 
-        <div>
+        <div className={styles.form__input}>
           <label htmlFor="difficulty">Difficulty:</label>
           <select
             className={alert.type === "error" ? styles.error : null}
@@ -115,7 +115,7 @@ const Activity = () => {
           </select>
         </div>
 
-        <div>
+        <div className={styles.form__input}>
           <label htmlFor="duration">Duration:</label>
           <input
             className={alert.type === "error" ? styles.error : null}
@@ -127,7 +127,7 @@ const Activity = () => {
           />
         </div>
 
-        <div>
+        <div className={styles.form__input}>
           <label htmlFor="season">Season:</label>
           <select
             className={alert.type === "error" ? styles.error : null}
@@ -144,13 +144,14 @@ const Activity = () => {
         </div>
 
         {/* Searched Countries */}
-        <div>
+        <div className={styles.form__input}>
           <label htmlFor="countries">Countries:</label>
           <input
             className={alert.type === "error" ? styles.error : null}
             type="text"
             value={countrySearched}
             name="countries"
+            placeholder="Italy, Argentina, Colombia..."
             onChange={(e) => {
               setCountrySearched(e.target.value);
               handleSearchCountry(e);
@@ -174,8 +175,9 @@ const Activity = () => {
             ))}
         </div>
 
-        <button type="submit">Create</button>
-
+        <div className={styles.form__submit}>
+          <button type="submit">Create</button>
+        </div>
         {alert.msg && <p>{alert.msg}</p>}
       </form>
     </div>

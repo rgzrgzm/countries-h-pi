@@ -1,3 +1,78 @@
+.activity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+
 .error {
   border: 1px solid red;
+}
+
+.activity form {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  border-radius: 10px;
+  background-color: #fafafa;
+  padding: 20px 0;
+
+  -webkit-box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.5);
+}
+
+form h3 {
+  text-align: center;
+  font-size: 19px;
+  margin: 0;
+}
+
+.form__input {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+  gap: 5px;
+  padding: 0 10px;
+}
+
+.form__input label {
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.form__input input {
+  padding: 10px;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid #cbcbcb;
+}
+
+.form__input select {
+  border-radius: 8px;
+  border: 1px solid #cbcbcb;
+}
+
+.form__input select {
+  padding: 10px;
+}
+
+form button {
+  background: none;
+  border: none;
+  width: 80%;
+  background-color: #9d1cf3;
+  font-size: 15px;
+  color: #fff;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+form .form__submit {
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
