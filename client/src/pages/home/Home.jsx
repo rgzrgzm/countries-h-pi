@@ -84,6 +84,7 @@ const Home = () => {
   const handleReset = () => {
     dispatch(getCountries());
     setIsFilteredByActivity(false);
+    setIsSearched(false)
   };
 
   return (
