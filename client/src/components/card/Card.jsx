@@ -9,7 +9,7 @@ const Card = ({ country }) => {
       <p>{name}</p>
       <img src={flag} alt="flag_country" />
       <div className={styles.card__description}>
-          <span>{continents}</span>
+        <span>{continents}</span>
       </div>
     </div>
   );

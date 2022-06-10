@@ -3,8 +3,10 @@ import styles from "./home.module.css";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  filterByActivity,
   filterByContinents,
   filterByPoblation,
+  getActivities,
   getCountries,
   sortByAsc,
 } from "../../redux/actions";
@@ -17,12 +19,17 @@ import { Link } from "react-router-dom";
 const Home = () => {
   const dispatch = useDispatch();
 
+  // LIST ARRAYS STATE REDUCER
   const allCountries = useSelector((state) => state.countries);
   const searchedCountries = useSelector((state) => state.searchedCountries);
+  const allActivities = useSelector((state) => state.activities);
+  const activitiesFiltered = useSelector((state) => state.activitiesFiltered);
+
+  // console.log(allActivities);
 
   const [order, setOrder] = useState("");
-
   const [isSearched, setIsSearched] = useState(false);
+  const [isFilteredByActivity, setIsFilteredByActivity] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [countryByPage, setCountryByPage] = useState(10);
@@ -36,6 +43,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getCountries());
+    dispatch(getActivities());
   }, [dispatch]);
 
   const changePage = (pageNumber) => {
@@ -65,30 +73,51 @@ const Home = () => {
     }
   };
 
+  const handleFilterByActivity = (e) => {
+    if (e.target.value !== "") {
+      console.log(e.target.value);
+      setIsFilteredByActivity(true);
+      dispatch(filterByActivity(e.target.value));
+    }
+  };
+
+  const handleReset = () => {
+    dispatch(getCountries());
+    setIsFilteredByActivity(false);
+  };
+
   return (
-    <div className={styles.home__container}>
+    <div className={styles.home}>
       <div className={styles.home__tap}>
         <InputSearch setIsSearched={setIsSearched} />
-        <Link to="/activity">Activity</Link>
+
+        <Link className={styles.home__link} to="/activity">
+          Activity
+        </Link>
       </div>
 
       <Sort
+        allActivities={allActivities}
         order={order}
         handleChangeByRegion={handleChangeByRegion}
         handleChangeSort={handleChangeSort}
         handleChangeSortByPoblation={handleChangeSortByPoblation}
+        handleFilterByActivity={handleFilterByActivity}
+        handleReset={handleReset}
       />
 
-      {isSearched ? (
-        /* If user search a country on InputSearch => Searched view */
+      {/* If user search a country on InputSearch => Searched view */}
+      {isSearched && (
         <div className="searched">
           <button onClick={() => setIsSearched(false)}>Back</button>
           {searchedCountries?.map((country) => (
             <Card key={country.id} country={country} />
           ))}
         </div>
-      ) : (
-        // Default List Of Countries view
+      )}
+
+      {/* Default List Countries view */}
+      {!isSearched && !isFilteredByActivity && (
         <>
           {totalCountries?.map((country) => (
             <Card key={country.id} country={country} />
@@ -101,6 +130,22 @@ const Home = () => {
           />
         </>
       )}
+      {/* Activity Filtered View */}
+      {isFilteredByActivity &&
+        activitiesFiltered &&
+        activitiesFiltered.map((actFiltered) => {
+          // console.log(actFiltered);
+          return (
+            <div className={styles.activity__filtered} key={actFiltered.id}>
+              Filter by activity:
+              {actFiltered.name}
+              Countries:
+              {actFiltered.Countries.map((c) => (
+                <Card key={c.id} country={c} />
+              ))}
+            </div>
+          );
+        })}
     </div>
   );
 };

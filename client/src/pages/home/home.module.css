@@ -1,4 +1,4 @@
-.home__container{
+.home{
     padding: 0 10px;
     font-size: 10px;
 }
@@ -6,4 +6,18 @@
 .home__tap{
     display: flex;
     justify-content: space-between;
+}
+
+.home .home__link{
+    font-size: 15px;
+    padding: 4px 15px;
+    font-weight: 500;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.home .home__link:hover{
+    background-color: #8c0fdf;
+    color: white;
+    font-weight: 600;
 }

@@ -58,7 +58,7 @@ form h3 {
   padding: 10px;
 }
 
-form button {
+.activity form button {
   background: none;
   border: none;
   width: 80%;

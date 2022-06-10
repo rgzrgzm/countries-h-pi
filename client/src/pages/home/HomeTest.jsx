@@ -11,11 +11,9 @@ import {
   countryByActivity,
   sortByAsc,
 } from "../../redux/actions";
-// import "./Home.scss";
 import Card from "../../components/card/Card";
 import Pages from "../../components/Pages/Pages";
 import SearchBar from "../../components/SearchBar/SearchBar";
-// import { NavLink } from "react-router-dom";
 
 export default function HomeTest() {
   const dispatch = useDispatch();
@@ -56,7 +54,7 @@ export default function HomeTest() {
 
   return (
     <div className="home">
-      <SearchBar setCurrentPage={setCurrentPage} />
+      {/* <SearchBar setCurrentPage={setCurrentPage} /> */}
 
       <div>
         <div className="filtros">

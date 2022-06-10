@@ -1,11 +1,15 @@
 import styles from "./sort.module.css";
 
 const Sort = ({
+  allActivities,
   order,
   handleChangeSort,
   handleChangeByRegion,
   handleChangeSortByPoblation,
+  handleFilterByActivity,
+  handleReset,
 }) => {
+  // console.log(allActivities);
   return (
     <div className={styles.sort}>
       <div className={styles.sort__select}>
@@ -41,12 +45,16 @@ const Sort = ({
             <option value={"Oceania"}>Oceania</option>
           </select>
 
-          <select>
-            <option>Activity</option>
-            <option>asc</option>
-            <option>des</option>
+          <select onChange={(e) => handleFilterByActivity(e)}>
+            <option value={""}>Activity</option>
+            {allActivities &&
+              allActivities.map((activity) => {
+                return <option key={activity.id}>{activity.name}</option>;
+              })}
           </select>
         </div>
+
+        <button onClick={() => handleReset()}>Reset</button>
       </div>
     </div>
   );

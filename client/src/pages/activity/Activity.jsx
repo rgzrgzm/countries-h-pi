@@ -93,7 +93,7 @@ const Activity = () => {
             value={name}
             type="text"
             name="name"
-            placeholder="Ski, remo, surf..."
+            placeholder="Ski, Remo, Surf..."
             onChange={(e) => setName(e.target.value)}
           />
         </div>
@@ -106,7 +106,7 @@ const Activity = () => {
             name="difficulty"
             onChange={(e) => setDifficulty(e.target.value)}
           >
-            <option defaultChecked>Select</option>
+            <option defaultChecked> -- Select -- </option>
             <option value="1">Very Easy</option>
             <option value="2">Easy</option>
             <option value="3">Normal</option>
@@ -176,7 +176,7 @@ const Activity = () => {
         </div>
 
         <div className={styles.form__submit}>
-          <button type="submit">Create</button>
+          <button type="submit">Create Activity</button>
         </div>
         {alert.msg && <p>{alert.msg}</p>}
       </form>

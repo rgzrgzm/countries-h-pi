@@ -3,6 +3,8 @@ const initialState = {
   country: [],
   allCountries: [],
   searchedCountries: [],
+  activities: [],
+  activitiesFiltered: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -22,7 +24,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case "SORT_BY_ASC":
-      console.log(action.payload);
+      // console.log(action.payload);
       let sortCountries =
         action.payload === "asc"
           ? state.countries.sort(function (a, b) {
@@ -87,6 +89,21 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         countries: sortByPoblation,
+      };
+    case "GET_ACTIVITIES":
+      return {
+        ...state,
+        activities: action.payload,
+      };
+    case "FILTER_BY_ACTIVITY":
+      console.log(action.payload);
+      let allActivities = state.activities;
+      let activitiesFiltered = allActivities.filter(
+        (activity) => activity.name === action.payload
+      );
+      return {
+        ...state,
+        activitiesFiltered: activitiesFiltered,
       };
 
     default:

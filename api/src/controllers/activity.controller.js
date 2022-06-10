@@ -4,7 +4,7 @@ const { Country, Activity } = require("../db");
 const createActivities = async (req, res) => {
   const { name, difficulty, duration, season, countries } = req.body;
   console.log(name);
-  
+
   console.log(req.body);
 
   //create new activity
@@ -44,32 +44,21 @@ const createActivities = async (req, res) => {
   // }
 };
 
-// const createActivities = async (req, res) => {
-//   const { activity, countries } = req.body;
+const getActivities = async (req, res) => {
+  try {
+    const activities = await Activity.findAll({
+      attributes: ["id", "name", "difficulty", "duration", "season"],
+      include: Country,
+    });
 
-//   try {
-//     const newActivity = await Activity.create(activity);
+    if (!activities) {
+      return res.status(500).json({ msg: "Activities not exist" });
+    }
 
-//     if (!newActivity) {
-//       throw new Error("Activity can not be created");
-//     }
+    return res.json(activities);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-//     //Buscar el pais en la db
-//     const countriesDb = await Country.findAll({
-//       where: { name: countries },
-//     });
-
-//     if (!countriesDb) {
-//       throw new Error("Country not found");
-//     }
-//     // Agregarle el pais en la db
-//     newActivity.addCountries(countriesDb);
-
-//     return res.status(201).json({ msg: "Activity created", newActivity });
-//   } catch (error) {
-//     console.log(error);
-//     return res.status(400).json({ error: error.message });
-//   }
-// };
-
-module.exports = { createActivities };
+module.exports = { createActivities, getActivities };

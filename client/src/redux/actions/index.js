@@ -45,7 +45,6 @@ export function searchCountriesByName(name) {
 }
 
 export function sortByAsc(value) {
-  // console.log(value);
   return {
     type: "SORT_BY_ASC",
     payload: value,
@@ -53,7 +52,6 @@ export function sortByAsc(value) {
 }
 
 export function filterByContinents(value) {
-  console.log(value);
   return {
     type: "FILTER_BY_CONTINENT",
     payload: value,
@@ -68,7 +66,6 @@ export function filterByPoblation(value) {
 }
 
 export function createActivity(payload) {
-  console.log(payload);
   return async function (dispatch) {
     try {
       const newAct = await axios.post(
@@ -79,5 +76,27 @@ export function createActivity(payload) {
     } catch (error) {
       console.log(error.response.data);
     }
+  };
+}
+
+export function getActivities() {
+  return async function (dispatch) {
+    try {
+      const { data } = await axios("http://localhost:3001/activities");
+
+      return dispatch({
+        type: "GET_ACTIVITIES",
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function filterByActivity(value) {
+  return {
+    type: "FILTER_BY_ACTIVITY",
+    payload: value,
   };
 }
