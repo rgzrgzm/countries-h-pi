@@ -42,7 +42,7 @@ const getCountryById = async (id) => {
       include: [
         {
           model: Activity,
-          attributes: ["id", "name", "dificulty", "duration", "season"],
+          attributes: ["id", "name", "difficulty", "duration", "season"],
         },
       ],
     });

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import styles from "./activity.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getCountries,
@@ -26,12 +27,18 @@ const Activity = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (name === "" || difficulty === "" || duration === "" || season === "") {
+    if (
+      name === "" ||
+      difficulty === "" ||
+      duration === "" ||
+      season === "" ||
+      countriesAdded.length === 0
+    ) {
       setAlert({ msg: "Todos los campos son necesarios", type: "error" });
 
       setTimeout(() => {
-        setAlert({});
-      }, 3000);
+        setAlert({ msg: "", type: "error" });
+      }, 2000);
 
       return;
     }
@@ -56,7 +63,7 @@ const Activity = () => {
     setAlert({ msg: "Activity created succesfully!", type: "success" });
     setTimeout(() => {
       setAlert({});
-    }, 3000);
+    }, 2000);
   };
 
   const handleSearchCountry = (e) => {
@@ -82,6 +89,7 @@ const Activity = () => {
         <div>
           <label htmlFor="name">Name:</label>
           <input
+            className={alert.type === "error" ? styles.error : null}
             value={name}
             type="text"
             name="name"
@@ -93,6 +101,7 @@ const Activity = () => {
         <div>
           <label htmlFor="difficulty">Difficulty:</label>
           <select
+            className={alert.type === "error" ? styles.error : null}
             value={difficulty}
             name="difficulty"
             onChange={(e) => setDifficulty(e.target.value)}
@@ -109,6 +118,7 @@ const Activity = () => {
         <div>
           <label htmlFor="duration">Duration:</label>
           <input
+            className={alert.type === "error" ? styles.error : null}
             value={duration}
             type="text"
             name="duration"
@@ -120,6 +130,7 @@ const Activity = () => {
         <div>
           <label htmlFor="season">Season:</label>
           <select
+            className={alert.type === "error" ? styles.error : null}
             value={season}
             name="season"
             onChange={(e) => setSeason(e.target.value)}
@@ -136,6 +147,7 @@ const Activity = () => {
         <div>
           <label htmlFor="countries">Countries:</label>
           <input
+            className={alert.type === "error" ? styles.error : null}
             type="text"
             value={countrySearched}
             name="countries"

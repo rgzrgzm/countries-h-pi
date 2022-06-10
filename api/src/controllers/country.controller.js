@@ -24,6 +24,7 @@ const getCountries = async (req, res) => {
 
 const getCountriesById = async (req, res) => {
   const { id } = req.params;
+  console.log(id);
 
   try {
     const country = await getCountryById(id);
