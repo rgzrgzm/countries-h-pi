@@ -15,6 +15,10 @@ import Sort from "../../components/sort/Sort";
 import Pagination from "../../components/pagination/Pagination";
 import InputSearch from "../../components/inputSearch/InputSearch";
 import { Link } from "react-router-dom";
+import HomeTap from "../../components/homeTap/HomeTap";
+import SearchedView from "../../components/searchedView/SearchedView";
+import DefaultView from "../../components/defaultView/DefaultView";
+import FilteredActivityView from "../../components/filteredActivityView/FilteredActivityView";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -25,12 +29,12 @@ const Home = () => {
   const allActivities = useSelector((state) => state.activities);
   const activitiesFiltered = useSelector((state) => state.activitiesFiltered);
 
-  // console.log(allActivities);
-
+  // COMPONENT STATES
   const [order, setOrder] = useState("");
   const [isSearched, setIsSearched] = useState(false);
   const [isFilteredByActivity, setIsFilteredByActivity] = useState(false);
 
+  // PAGINATED LOGIC
   const [currentPage, setCurrentPage] = useState(1);
   const [countryByPage, setCountryByPage] = useState(10);
 
@@ -41,11 +45,13 @@ const Home = () => {
     indexOfLastCountry
   );
 
+  // COMPONENT EFFECT
   useEffect(() => {
     dispatch(getCountries());
     dispatch(getActivities());
   }, [dispatch]);
 
+  // FUNCTIONS & HANDLERS 
   const changePage = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -84,18 +90,13 @@ const Home = () => {
   const handleReset = () => {
     dispatch(getCountries());
     setIsFilteredByActivity(false);
-    setIsSearched(false)
+    setIsSearched(false);
+    setCurrentPage(1);
   };
 
   return (
     <div className={styles.home}>
-      <div className={styles.home__tap}>
-        <InputSearch setIsSearched={setIsSearched} />
-
-        <Link className={styles.home__link} to="/activity">
-          Activity
-        </Link>
-      </div>
+      <HomeTap setIsSearched={setIsSearched} />
 
       <Sort
         allActivities={allActivities}
@@ -109,46 +110,26 @@ const Home = () => {
 
       {/* If user search a country on InputSearch => Searched view */}
       {isSearched && !isFilteredByActivity && (
-        <div className="searched">
-          <button onClick={() => setIsSearched(false)}>Back</button>
-          {searchedCountries?.map((country) => (
-            <Card key={country.id} country={country} />
-          ))}
-
-          {searchedCountries.length === 0 && "City not found"}
-        </div>
+        <SearchedView
+          setIsSearched={setIsSearched}
+          searchedCountries={searchedCountries}
+        />
       )}
 
       {/* Default List Countries view */}
       {!isSearched && !isFilteredByActivity && (
-        <>
-          {totalCountries?.map((country) => (
-            <Card key={country.id} country={country} />
-          ))}
-
-          <Pagination
-            countryByPage={countryByPage}
-            allCountries={allCountries.length}
-            changePage={changePage}
-          />
-        </>
+        <DefaultView
+          totalCountries={totalCountries}
+          allCountries={allCountries}
+          countryByPage={countryByPage}
+          changePage={changePage}
+        />
       )}
+
       {/* Activity Filtered View */}
-      {isFilteredByActivity &&
-        activitiesFiltered &&
-        activitiesFiltered.map((actFiltered) => {
-          // console.log(actFiltered);
-          return (
-            <div className={styles.activity__filtered} key={actFiltered.id}>
-              Filter by activity:
-              {actFiltered.name}
-              Countries:
-              {actFiltered.Countries.map((c) => (
-                <Card key={c.id} country={c} />
-              ))}
-            </div>
-          );
-        })}
+      {isFilteredByActivity && (
+        <FilteredActivityView activitiesFiltered={activitiesFiltered} />
+      )}
     </div>
   );
 };

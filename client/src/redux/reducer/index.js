@@ -5,6 +5,7 @@ const initialState = {
   searchedCountries: [],
   activities: [],
   activitiesFiltered: [],
+  postActivities: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -104,6 +105,12 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         activitiesFiltered: activitiesFiltered,
+      };
+    case "CREATE_ACTIVITY":
+      console.log(action.payload);
+      return {
+        ...state,
+        postActivities: action.payload,
       };
 
     default:

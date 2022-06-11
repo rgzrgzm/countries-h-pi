@@ -5,6 +5,16 @@ const createActivity = async (req) => {
 
   try {
     //Create new activity
+    const existActivity = await Activity.findAll({
+      where: {
+        name: name,
+      },
+    });
+
+    if (existActivity) {
+      throw new Error("Activity Already Exists!");
+    }
+
     const newActivity = await Activity.create({
       name,
       difficulty,

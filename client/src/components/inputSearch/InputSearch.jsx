@@ -2,17 +2,19 @@ import React, { useState } from "react";
 import { searchCountriesByName } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 
-const InputSearch = ({setIsSearched}) => {
+const InputSearch = ({ setIsSearched }) => {
   const dispatch = useDispatch();
   const [countryName, setCountryName] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (e.target.value === "" || countryName === "") return;
+
     console.log("submit");
     // console.log(countryName)
-    setIsSearched(true)
+    setIsSearched(true);
     dispatch(searchCountriesByName(countryName));
-    setCountryName("")
+    setCountryName("");
   };
 
   return (

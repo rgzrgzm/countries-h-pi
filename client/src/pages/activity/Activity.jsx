@@ -9,8 +9,9 @@ import {
 
 const Activity = () => {
   const dispatch = useDispatch();
-  const countries = useSelector((state) => state.countries);
+  // const countries = useSelector((state) => state.countries);
   const searchedCountries = useSelector((state) => state.searchedCountries);
+  const postActivities = useSelector((state) => state.postActivities);
 
   useEffect(() => {
     dispatch(getCountries());
@@ -53,6 +54,7 @@ const Activity = () => {
 
     dispatch(createActivity(newActivity));
 
+    //Reset input forms
     setName("");
     setDifficulty("");
     setDuration("");
@@ -71,6 +73,9 @@ const Activity = () => {
   };
 
   const handleAddCountry = (country) => {
+    if (countriesAdded.includes(country.name)) {
+      return;
+    }
     setCountriesAdded([...countriesAdded, country.name]);
   };
 
@@ -80,6 +85,9 @@ const Activity = () => {
     );
     setCountriesAdded(countriesAddedFiltered);
   };
+
+  console.log(postActivities);
+  const { newActivity, country } = postActivities;
 
   return (
     <div className={styles.activity}>
@@ -94,7 +102,7 @@ const Activity = () => {
             type="text"
             name="name"
             placeholder="Ski, Remo, Surf..."
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => setName(e.target.value.toLocaleLowerCase())}
           />
         </div>
 
@@ -179,7 +187,25 @@ const Activity = () => {
           <button type="submit">Create Activity</button>
         </div>
         {alert.msg && <p>{alert.msg}</p>}
+        {postActivities.msg && <p>{postActivities.msg}</p>}
       </form>
+
+      {newActivity && newActivity.name}
+      {newActivity && newActivity.season}
+      {newActivity && newActivity.duration}
+      {newActivity && newActivity.difficulty}
+      {country &&
+        country.map((c) => {
+          return (
+            <div className="" key={c.id}>
+              {c.name}
+              {c.capital}
+              {c.continents}
+              <img src={c.flag} alt="flag_country" />
+              {c.createdAt}
+            </div>
+          );
+        })}
     </div>
   );
 };

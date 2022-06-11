@@ -5,26 +5,40 @@ const createActivities = async (req, res) => {
   const { name, difficulty, duration, season, countries } = req.body;
   console.log(name);
 
-  console.log(req.body);
+  // console.log(req.body);
 
   //create new activity
   try {
-    const newActivity = await Activity.create({
-      name: name,
-      difficulty: difficulty,
-      duration: duration,
-      season: season,
-    });
-
-    const country = await Country.findAll({
+    const existActivity = await Activity.findAll({
       where: {
-        name: countries,
+        name: name,
       },
     });
 
-    // Insert country on a new activity
-    await newActivity.addCountries(country);
-    return res.json(newActivity);
+    // console.log(existActivity);
+
+    if (existActivity.length > 0) {
+      return res.json({ msg: `The activity "${name}" already exist!` });
+    }
+
+    if (existActivity.length === 0) {
+      const newActivity = await Activity.create({
+        name: name,
+        difficulty: difficulty,
+        duration: duration,
+        season: season,
+      });
+
+      const country = await Country.findAll({
+        where: {
+          name: countries,
+        },
+      });
+
+      // Insert country on a new activity
+      await newActivity.addCountries(country);
+      return res.json({ newActivity, country });
+    }
   } catch (error) {
     console.log(error);
   }

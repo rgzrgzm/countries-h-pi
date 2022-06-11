@@ -68,11 +68,15 @@ export function filterByPoblation(value) {
 export function createActivity(payload) {
   return async function (dispatch) {
     try {
-      const newAct = await axios.post(
+      const { data } = await axios.post(
         "http://localhost:3001/activities",
         payload
       );
-      return newAct;
+
+      return dispatch({
+        type: "CREATE_ACTIVITY",
+        payload: data,
+      });
     } catch (error) {
       console.log(error.response.data);
     }
