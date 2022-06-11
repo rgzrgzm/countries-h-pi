@@ -18,7 +18,7 @@ const createActivities = async (req, res) => {
     // console.log(existActivity);
 
     if (existActivity.length > 0) {
-      return res.json({ msg: `The activity "${name}" already exist!` });
+      return res.json({ msg: `The activity "${name}" already exist!, create a new one`});
     }
 
     if (existActivity.length === 0) {

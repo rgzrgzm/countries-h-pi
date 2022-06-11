@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Activity from "./pages/activity/Activity";
+import CreateActivity from "./pages/activity/CreateActivity";
 import Country from "./pages/country/Country";
 import Home from "./pages/home/Home";
 
@@ -12,9 +13,9 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/activity" component={Activity} />
+          <Route exact path="/create-activity" component={CreateActivity} />
           <Route exact path="/country/:id" component={Country} />
         </Switch>
-        
       </div>
     </BrowserRouter>
   );

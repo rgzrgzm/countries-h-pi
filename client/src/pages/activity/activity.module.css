@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   padding-bottom: 20px;
+  position: relative;
 }
 
 .error {
@@ -17,7 +18,7 @@
   border-radius: 10px;
   background-color: #fafafa;
   padding: 20px 0;
-
+  position: relative;
   -webkit-box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.5);
   box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.5);
@@ -58,7 +59,7 @@ form h3 {
   padding: 10px;
 }
 
-.activity form button {
+.activity .form__submit button {
   background: none;
   border: none;
   width: 80%;
@@ -75,4 +76,52 @@ form .form__submit {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.activity__link {
+  background-color: #9d1cf3;
+  color: #fafafa;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.button__back {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+}
+
+.button__back img{
+  width: 100%;
+  height: 100%;
+}
+
+.activity__list{
+  padding: 0 10px;
+}
+
+.activity__list h1{
+  text-align: center;
+  color: #1c1c1c;
+  font-size: 26px;
+
+}
+.activity__list h3{
+  color: #1c1c1c;
+
+}
+
+.activity__listEmpty h5{
+  color: #1c1c1c;
+  text-align: center;
+  font-weight: 500;
 }
