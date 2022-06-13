@@ -11,7 +11,15 @@
   border: 1px solid red;
 }
 
+.text__error {
+  color: red;
+  text-align: center;
+  font-weight: bold;
+}
+
 .activity form {
+  transition: .3s;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   width: 90%;
@@ -68,6 +76,7 @@ form h3 {
   color: #fff;
   padding: 10px;
   border-radius: 6px;
+  margin-bottom: 10px;
 }
 
 form .form__submit {
@@ -100,28 +109,74 @@ form .form__submit {
   width: 32px;
 }
 
-.button__back img{
+.button__back img {
   width: 100%;
   height: 100%;
 }
 
-.activity__list{
+.activity__list {
   padding: 0 10px;
 }
 
-.activity__list h1{
+.activity__list h1 {
   text-align: center;
   color: #1c1c1c;
   font-size: 26px;
-
 }
-.activity__list h3{
+.activity__list h3 {
   color: #1c1c1c;
-
 }
 
-.activity__listEmpty h5{
+.activity__listEmpty h5 {
   color: #1c1c1c;
   text-align: center;
   font-weight: 500;
+}
+
+.activity__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.activity__card {
+  background-color: #fafafa;
+  padding: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.5);
+}
+
+.activity__created {
+  margin: 0 auto;
+  padding: 10px;
+  width: 90%;
+  border-radius: 10px;
+  background-color: #fafafa;
+  -webkit-box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.5);
+}
+
+.activity__info {
+  display: flex;
+  gap: 5px;
+}
+
+.created__infoContinents img {
+  width: 80px;
+}
+
+p.created__infoTitle {
+  font-weight: 700;
+}
+
+.activity__countriesInfo{
+  display: flex;
+  gap: 10px;
+}
+
+.activity__countriesInfo img{
+  width: 30px;
 }

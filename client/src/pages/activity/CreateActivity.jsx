@@ -8,10 +8,11 @@ import {
   createActivity,
 } from "../../redux/actions";
 import { Link } from "react-router-dom";
+import CreatedActivity from "../../components/createdActivity/CreatedActivity";
 
 const CreateActivity = () => {
   const dispatch = useDispatch();
-  // const countries = useSelector((state) => state.countries);
+
   const searchedCountries = useSelector((state) => state.searchedCountries);
   const postActivities = useSelector((state) => state.postActivities);
 
@@ -19,14 +20,18 @@ const CreateActivity = () => {
     dispatch(getCountries());
   }, [dispatch]);
 
+  // INPUTS VALUES STATES
   const [name, setName] = useState("");
   const [difficulty, setDifficulty] = useState("");
   const [duration, setDuration] = useState("");
   const [season, setSeason] = useState("");
   const [countrySearched, setCountrySearched] = useState("");
+
+  // ARRAY
   const [countriesAdded, setCountriesAdded] = useState([]);
   const [alert, setAlert] = useState({ msg: "", type: "" });
 
+  // FORM SUBMIT
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -56,7 +61,7 @@ const CreateActivity = () => {
 
     dispatch(createActivity(newActivity));
 
-    //Reset input forms
+    //Reset inputs form
     setName("");
     setDifficulty("");
     setDuration("");
@@ -70,6 +75,7 @@ const CreateActivity = () => {
     }, 2000);
   };
 
+  // FUNCTIONS HANDLERS COMPONENT
   const handleSearchCountry = (e) => {
     dispatch(searchCountriesByName(countrySearched));
   };
@@ -88,6 +94,7 @@ const CreateActivity = () => {
     setCountriesAdded(countriesAddedFiltered);
   };
 
+  // DESTRUCTURING STATE REDUCER - NEW ACTIVITY
   const { newActivity, country } = postActivities;
 
   return (
@@ -191,26 +198,16 @@ const CreateActivity = () => {
         <div className={styles.form__submit}>
           <button type="submit">Create Activity</button>
         </div>
-        {alert.msg && <p>{alert.msg}</p>}
+        {alert.msg && <p className={alert.type === "error" ? styles.text__error : null}>{alert.msg}</p>}
         {postActivities.msg && <p>{postActivities.msg}</p>}
       </form>
 
-      {newActivity && newActivity.name}
-      {newActivity && newActivity.season}
-      {newActivity && newActivity.duration}
-      {newActivity && newActivity.difficulty}
-      {country &&
-        country.map((c) => {
-          return (
-            <div className="" key={c.id}>
-              {c.name}
-              {c.capital}
-              {c.continents}
-              <img src={c.flag} alt="flag_country" />
-              {c.createdAt}
-            </div>
-          );
-        })}
+      {newActivity && (
+        <>
+          <h5>Activity created:</h5>
+          <CreatedActivity newActivity={newActivity} country={country} />
+        </>
+      )}
     </div>
   );
 };
