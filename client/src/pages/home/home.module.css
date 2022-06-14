@@ -82,3 +82,45 @@
 .searched__empty {
   text-align: center;
 }
+
+@media (min-width: 768px) {
+  .grid__container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+}
+
+.pagination__container {
+  margin-top: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.pagination__container button {
+  background-color: #fafafa;
+  font-size: 10px;
+  font-weight: 800;
+  color: #202020;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  -webkit-box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.4);
+}
+
+.pagination__container button:hover {
+  background-color: #8c0fdf;
+  color: #fafafa;
+}
+
+.pagination__container button.selected {
+  background-color: #8c0fdf;
+  color: #fafafa;
+}

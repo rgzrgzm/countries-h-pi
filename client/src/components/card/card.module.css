@@ -30,3 +30,20 @@
   font-size: 15px;
 }
 
+@media (min-width: 768px) {
+  .card{
+    max-height: 150px;
+    max-width: 300px;
+    margin-bottom: 10rem;
+    
+  }
+}
+
+@media (min-width: 1000px) {
+  .card{
+    max-height: 250px;
+    max-width: 400px;
+    margin-bottom: 10rem;
+    
+  }
+}
