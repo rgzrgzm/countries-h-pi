@@ -42,7 +42,7 @@ const CreateActivity = () => {
       season === "" ||
       countriesAdded.length === 0
     ) {
-      setAlert({ msg: "Todos los campos son necesarios", type: "error" });
+      setAlert({ msg: "All fields are required", type: "error" });
 
       setTimeout(() => {
         setAlert({ msg: "", type: "error" });
@@ -84,6 +84,7 @@ const CreateActivity = () => {
     if (countriesAdded.includes(country.name)) {
       return;
     }
+    setCountrySearched("");
     setCountriesAdded([...countriesAdded, country.name]);
   };
 
@@ -181,25 +182,41 @@ const CreateActivity = () => {
           {countrySearched !== "" &&
             searchedCountries &&
             searchedCountries.map((country) => (
-              <p key={country.name} onClick={() => handleAddCountry(country)}>
-                {country.name} - agregar
-              </p>
+              <div
+                className={styles.countryAdded}
+                key={country.name}
+                onClick={() => handleAddCountry(country)}
+              >
+                {country.name} - Add
+              </div>
             ))}
 
           {countriesAdded &&
             countriesAdded.map((countryAdded, index) => (
-              <p key={index}>
+              <div
+                className={`${styles.countryAdded} ${styles.stack}`}
+                key={index}
+              >
                 {countryAdded} -{" "}
-                <span onClick={() => handleClickDelete(countryAdded)}>x</span>{" "}
-              </p>
+                <span onClick={() => handleClickDelete(countryAdded)}>
+                  Delete
+                </span>{" "}
+              </div>
             ))}
         </div>
 
         <div className={styles.form__submit}>
           <button type="submit">Create Activity</button>
         </div>
-        {alert.msg && <p className={alert.type === "error" ? styles.text__error : null}>{alert.msg}</p>}
-        {postActivities.msg && <p>{postActivities.msg}</p>}
+        {alert.msg && (
+          <p className={alert.type === "error" ? styles.text__error : alert.type === "success" ? styles.text__success : null}>
+            {alert.msg}
+          </p>
+        )}
+
+        {postActivities.msg && (
+          <p className={styles.text__error}>{postActivities.msg}</p>
+        )}
       </form>
 
       {newActivity && (

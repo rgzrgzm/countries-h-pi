@@ -1,0 +1,48 @@
+.cardDetail {
+  height: calc(100vh - 80px);
+  padding: 10px;
+  background-color: #fafafa;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  -webkit-box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.4);
+}
+
+.cardDetail h3 {
+  text-align: center;
+  color: #202020;
+}
+
+.cardDetail h4 {
+  margin: 0;
+  text-align: center;
+  color: #202020;
+}
+
+.cardDetail p {
+  text-align: center;
+  color: #202020;
+}
+
+.cardDetail img {
+  margin: 0 auto;
+  display: block;
+  padding: 10px;
+}
+
+.cardDetail__body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cardDetail__body p {
+  text-align: start;
+  font-weight: 600;
+}
+
+.cardDetail__info {
+  display: flex;
+  gap: 5px;
+}

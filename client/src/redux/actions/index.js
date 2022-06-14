@@ -27,6 +27,20 @@ export function getCountries() {
   };
 }
 
+export function getCountryById(id) {
+  return async function (dispatch) {
+    try {
+      const { data } = await axios(`http://localhost:3001/countries/${id}`);
+      return dispatch({
+        type: "GET_COUNTRY_BY_ID",
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
 export function searchCountriesByName(name) {
   return async function (dispatch) {
     try {
@@ -41,6 +55,12 @@ export function searchCountriesByName(name) {
     } catch (error) {
       console.log(error);
     }
+  };
+}
+
+export function resetStateSearched() {
+  return {
+    type: "RESET_STATE_SEARCHED",
   };
 }
 

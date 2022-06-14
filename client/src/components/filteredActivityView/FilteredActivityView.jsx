@@ -1,12 +1,15 @@
 import React from "react";
+import styles from '../../pages/home/home.module.css'
 import Card from "../card/Card";
 
 const FilteredActivityView = ({ activitiesFiltered }) => {
   const nameActivity = activitiesFiltered[0].name;
   return (
     <div>
-     <h2> Filtered by Activity: {nameActivity}</h2>
-     <h4> Countries: </h4>
+      <div className={styles.filtered__info}>
+        <h2>Filtered by Activity:</h2>
+        <p>{nameActivity}</p>
+      </div>
       {activitiesFiltered &&
         activitiesFiltered.map((actFiltered) => {
           // console.log(actFiltered);

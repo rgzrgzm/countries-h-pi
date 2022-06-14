@@ -13,8 +13,8 @@ const Sort = ({
   return (
     <div className={styles.sort}>
       <div className={styles.sort__select}>
-        <span>Sort by</span>
         <div>
+          <span>Sort by</span>
           <select onChange={(e) => handleChangeSort(e)}>
             <option>Select</option>
             <option value="asc">asc A-Z</option>
@@ -53,9 +53,10 @@ const Sort = ({
               })}
           </select>
         </div>
-
-        <button onClick={() => handleReset()}>Reset</button>
       </div>
+
+      <button onClick={() => handleReset()}>Reset</button>
+      
     </div>
   );
 };

@@ -25,7 +25,6 @@ function rootReducer(state = initialState, action) {
       };
 
     case "SORT_BY_ASC":
-      // console.log(action.payload);
       let sortCountries =
         action.payload === "asc"
           ? state.countries.sort(function (a, b) {
@@ -37,7 +36,7 @@ function rootReducer(state = initialState, action) {
               }
               return 0;
             })
-          : //DES METHOD
+          : //DESC ...
             state.countries.sort(function (a, b) {
               if (a.name > b.name) {
                 return -1;
@@ -52,6 +51,17 @@ function rootReducer(state = initialState, action) {
         countries: sortCountries,
       };
 
+    case "GET_COUNTRY_BY_ID":
+      return {
+        ...state,
+        searchedCountries: action.payload,
+      };
+
+    case "RESET_STATE_SEARCHED":
+      return {
+        ...state,
+        searchedCountries: [],
+      };
     case "FILTER_BY_CONTINENT":
       let allCountries = state.allCountries;
       let continentFiltered =

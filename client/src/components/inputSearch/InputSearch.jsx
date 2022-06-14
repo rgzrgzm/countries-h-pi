@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { searchCountriesByName } from "../../redux/actions";
 import { useDispatch } from "react-redux";
+import styles from "../../pages/home/home.module.css";
 
 const InputSearch = ({ setIsSearched }) => {
   const dispatch = useDispatch();
@@ -10,15 +11,13 @@ const InputSearch = ({ setIsSearched }) => {
     e.preventDefault();
     if (e.target.value === "" || countryName === "") return;
 
-    console.log("submit");
-    // console.log(countryName)
     setIsSearched(true);
     dispatch(searchCountriesByName(countryName));
     setCountryName("");
   };
 
   return (
-    <div>
+    <div className={styles.input__search}>
       <form onSubmit={handleSubmit}>
         <input
           value={countryName}
@@ -27,7 +26,12 @@ const InputSearch = ({ setIsSearched }) => {
           placeholder="Search country"
         />
 
-        <button type="submit">Search</button>
+        <button
+          className={countryName.length === 0 ? styles.btn__disabled : null}
+          type="submit"
+        >
+          Search
+        </button>
       </form>
     </div>
   );

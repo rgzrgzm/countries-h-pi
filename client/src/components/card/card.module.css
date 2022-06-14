@@ -2,6 +2,12 @@
   width: 90%;
   margin: 0 auto;
   margin-bottom: 1.5rem;
+  border-radius: 10px;
+  background-color: #fafafa;
+  -webkit-box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
 }
 
 .card p {
@@ -17,9 +23,10 @@
   display: block;
 }
 
-.card__description span{
+.card__description a {
   display: block;
   text-align: center;
   padding: 18px 0;
   font-size: 15px;
 }
+
