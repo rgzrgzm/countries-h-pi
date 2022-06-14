@@ -1,17 +1,5 @@
 import axios from "axios";
 
-const GET_COUNTRIES = "GET_COUNTRIES";
-
-export const GET_COUNTRY = "GET_COUNTRY";
-export const GET_COUNTRY_NAME = "GET_COUNTRY_NAME";
-export const GET_DETAILS = "GET_DETAILS;";
-export const ORDER_BY_COUNTRY = "ORDER_BY_COUNTRY";
-export const FILTER_BY_CONTINENT = "FILTER_BY_CONTINENT";
-export const FILTER_BY_POPULATION = "FILTER_BY_POPULATION";
-export const GET_ONLY_COUNTRIES = "GET_ONLY_COUNTRIES";
-export const GET_TOUR_ACTIVITY = "GET_TOUR_ACTIVITY";
-export const COUNTRY_BY_ACTIVITY = "COUNTRY_BY_ACTIVITY";
-
 export function getCountries() {
   return async function (dispatch) {
     try {

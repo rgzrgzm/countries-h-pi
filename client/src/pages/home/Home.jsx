@@ -10,11 +10,7 @@ import {
   getCountries,
   sortByAsc,
 } from "../../redux/actions";
-import Card from "../../components/card/Card";
 import Sort from "../../components/sort/Sort";
-import Pagination from "../../components/pagination/Pagination";
-import InputSearch from "../../components/inputSearch/InputSearch";
-import { Link } from "react-router-dom";
 import HomeTap from "../../components/homeTap/HomeTap";
 import SearchedView from "../../components/searchedView/SearchedView";
 import DefaultView from "../../components/defaultView/DefaultView";
@@ -36,7 +32,7 @@ const Home = () => {
 
   // PAGINATED LOGIC
   const [currentPage, setCurrentPage] = useState(1);
-  const [countryByPage, setCountryByPage] = useState(10);
+  const [countryByPage, setCountryByPage] = useState(10); // eslint-disable-line
 
   const indexOfLastCountry = currentPage * countryByPage; // extraer el ultimo obj del arr (1p = 10 obj), (2p = sig 10)...
   const indexOfFirstCountry = indexOfLastCountry - countryByPage; // extraer el primer obj del array (obj0)
@@ -51,7 +47,7 @@ const Home = () => {
     dispatch(getActivities());
   }, [dispatch]);
 
-  // FUNCTIONS & HANDLERS 
+  // FUNCTIONS & HANDLERS
   const changePage = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -75,13 +71,14 @@ const Home = () => {
     if (e.target.value !== "Select") {
       dispatch(filterByPoblation(e.target.value));
       setOrder(`Order ${e.target.value}`);
+      setIsFilteredByActivity(false);
       setCurrentPage(1);
     }
   };
 
   const handleFilterByActivity = (e) => {
     if (e.target.value !== "") {
-      console.log(e.target.value);
+      setOrder("");
       setIsFilteredByActivity(true);
       dispatch(filterByActivity(e.target.value));
     }
@@ -91,6 +88,7 @@ const Home = () => {
     dispatch(getCountries());
     setIsFilteredByActivity(false);
     setIsSearched(false);
+    setOrder("");
     setCurrentPage(1);
   };
 

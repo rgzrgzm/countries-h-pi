@@ -9,7 +9,6 @@ const Sort = ({
   handleFilterByActivity,
   handleReset,
 }) => {
-  // console.log(allActivities);
   return (
     <div className={styles.sort}>
       <div className={styles.sort__select}>
@@ -21,6 +20,8 @@ const Sort = ({
             <option value="des">des Z-A</option>
           </select>
         </div>
+
+        <span>{order && order}</span>
 
         <div>
           <span>Poblation</span>
@@ -56,7 +57,6 @@ const Sort = ({
       </div>
 
       <button onClick={() => handleReset()}>Reset</button>
-      
     </div>
   );
 };

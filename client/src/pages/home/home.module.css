@@ -65,16 +65,20 @@
   background-color: #8c0fdf;
 }
 
-.input__search button.btn__disabled{
-    background-color: #b087cb;
+.input__search button.btn__disabled {
+  background-color: #b087cb;
 }
 
-.searched{
+.searched {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-.searched img.searched__icon{
+.searched img.searched__icon {
   width: 30px;
+}
+
+.searched__empty {
+  text-align: center;
 }

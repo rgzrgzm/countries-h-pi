@@ -27,8 +27,10 @@ const CreateActivity = () => {
   const [season, setSeason] = useState("");
   const [countrySearched, setCountrySearched] = useState("");
 
-  // ARRAY
+  // ARRAY COUNTRIES ADDED STATE
   const [countriesAdded, setCountriesAdded] = useState([]);
+
+  // ALERTS FOR UI STATE
   const [alert, setAlert] = useState({ msg: "", type: "" });
 
   // FORM SUBMIT
@@ -95,7 +97,7 @@ const CreateActivity = () => {
     setCountriesAdded(countriesAddedFiltered);
   };
 
-  // DESTRUCTURING STATE REDUCER - NEW ACTIVITY
+  // DESTRUCTURING STATE REDUCER - NEW ACTIVITY RESPONSE
   const { newActivity, country } = postActivities;
 
   return (
@@ -208,6 +210,7 @@ const CreateActivity = () => {
         <div className={styles.form__submit}>
           <button type="submit">Create Activity</button>
         </div>
+        
         {alert.msg && (
           <p className={alert.type === "error" ? styles.text__error : alert.type === "success" ? styles.text__success : null}>
             {alert.msg}

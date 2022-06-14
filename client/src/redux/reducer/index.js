@@ -1,6 +1,5 @@
 const initialState = {
   countries: [],
-  country: [],
   allCountries: [],
   searchedCountries: [],
   activities: [],
@@ -14,7 +13,6 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         countries: action.payload,
-        country: action.payload,
         allCountries: action.payload,
       };
 
@@ -107,7 +105,6 @@ function rootReducer(state = initialState, action) {
         activities: action.payload,
       };
     case "FILTER_BY_ACTIVITY":
-      console.log(action.payload);
       let allActivities = state.activities;
       let activitiesFiltered = allActivities.filter(
         (activity) => activity.name === action.payload

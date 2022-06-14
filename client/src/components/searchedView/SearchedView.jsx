@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import styles from "../../pages/home/home.module.css";
 import arrow_back from "../../arrow_back.svg";
 import Card from "../card/Card";
+import { resetStateSearched } from "../../redux/actions";
 
 const SearchedView = ({ setIsSearched, searchedCountries }) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    return () => dispatch(resetStateSearched());
+  }, [dispatch]);
+
   return (
     <div className={styles.searched}>
       <img
@@ -16,7 +24,11 @@ const SearchedView = ({ setIsSearched, searchedCountries }) => {
         <Card key={country.id} country={country} />
       ))}
 
-      {searchedCountries.length === 0 && "City not found"}
+      {searchedCountries.length === 0 && (
+        <div className={styles.searched__empty}>
+          <h2>City not found</h2>
+        </div>
+      )}
     </div>
   );
 };
