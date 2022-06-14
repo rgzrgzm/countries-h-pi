@@ -33,7 +33,7 @@ const CardDetail = () => {
           <div className={styles.cardDetail__body}>
             <div className={styles.cardDetail__info}>
               <p>Area:</p>
-              <span>{countryById.area}</span>
+              <span>{countryById.area} km2</span>
             </div>
 
             <div className={styles.cardDetail__info}>

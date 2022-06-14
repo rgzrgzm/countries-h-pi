@@ -1,22 +1,24 @@
-*{
+*,
+::after,
+::before {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: #e8e8e8;
 }
 
-p{
+p {
   margin: 0;
 }
 
-h1{
+h1 {
   margin: 0;
 }
 
-a{
+a {
   text-decoration: none;
   color: black;
 }

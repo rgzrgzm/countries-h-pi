@@ -3,9 +3,6 @@ const { Country, Activity } = require("../db");
 
 const createActivities = async (req, res) => {
   const { name, difficulty, duration, season, countries } = req.body;
-  console.log(name);
-
-  // console.log(req.body);
 
   //create new activity
   try {
@@ -14,8 +11,6 @@ const createActivities = async (req, res) => {
         name: name,
       },
     });
-
-    // console.log(existActivity);
 
     if (existActivity.length > 0) {
       return res.json({ msg: `The activity "${name}" already exist!, create a new one`});
@@ -43,19 +38,6 @@ const createActivities = async (req, res) => {
     console.log(error);
   }
 
-  // try {
-  //   const newActivity = await createActivity(req);
-  //   if (!newActivity) {
-  //     throw new Error("Activity can not be created");
-  //   }
-
-  //   return res
-  //     .status(201)
-  //     .json({ msg: "Activity created succesfully", newActivity });
-  // } catch (error) {
-  //   console.log(error);
-  //   return res.status(400).json({ error: error.message });
-  // }
 };
 
 const getActivities = async (req, res) => {
