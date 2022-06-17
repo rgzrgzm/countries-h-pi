@@ -13,7 +13,9 @@ const createActivities = async (req, res) => {
     });
 
     if (existActivity.length > 0) {
-      return res.json({ msg: `The activity "${name}" already exist!, create a new one`});
+      return res.json({
+        msg: `The activity "${name}" already exist!, create a new one`,
+      });
     }
 
     if (existActivity.length === 0) {
@@ -37,7 +39,6 @@ const createActivities = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-
 };
 
 const getActivities = async (req, res) => {
@@ -57,4 +58,17 @@ const getActivities = async (req, res) => {
   }
 };
 
-module.exports = { createActivities, getActivities };
+const deleteActivity = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await Activity.destroy({
+      where: { id },
+    });
+
+    return res.json({ msg: "Actividad eliminada" });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports = { createActivities, getActivities, deleteActivity };

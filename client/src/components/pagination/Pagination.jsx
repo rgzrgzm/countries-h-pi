@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "../../pages/home/home.module.css";
 
-
 const Pagination = ({ countryByPage, allCountries, changePage }) => {
   const pageNumbers = [];
 
@@ -12,11 +11,11 @@ const Pagination = ({ countryByPage, allCountries, changePage }) => {
     <div className={styles.pagination__container}>
       {pageNumbers &&
         pageNumbers.map((number, index) => {
-          return (
-            <button key={number} onClick={() => changePage(number)}>
+          return number < 25 ? (
+            <button key={index} onClick={() => changePage(number)}>
               {number}
             </button>
-          );
+          ) : null;
         })}
     </div>
   );

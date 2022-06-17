@@ -32,9 +32,9 @@ const Home = () => {
 
   // PAGINATED LOGIC
   const [currentPage, setCurrentPage] = useState(1);
-  const [countryByPage, setCountryByPage] = useState(10); // eslint-disable-line
+  const [countryByPage, setCountryByPage] = useState(9); // eslint-disable-line
 
-  const indexOfLastCountry = currentPage * countryByPage; // extraer el ultimo obj del arr (1p = 10 obj), (2p = sig 10)...
+  const indexOfLastCountry = currentPage * countryByPage; // extraer el ultimo obj del arr (1p = 9 obj), (2p = sig 10)...
   const indexOfFirstCountry = indexOfLastCountry - countryByPage; // extraer el primer obj del array (obj0)
   const totalCountries = allCountries.slice(
     indexOfFirstCountry,
@@ -50,6 +50,7 @@ const Home = () => {
   // FUNCTIONS & HANDLERS
   const changePage = (pageNumber) => {
     setCurrentPage(pageNumber);
+    pageNumber >= 2 ? setCountryByPage(10) : setCountryByPage(9);
   };
 
   const handleChangeByRegion = (e) => {

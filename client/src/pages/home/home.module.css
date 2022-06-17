@@ -1,5 +1,5 @@
 .home {
-  padding: 0 10px;
+  padding: 25px 10px;
   font-size: 10px;
 }
 
@@ -61,12 +61,14 @@
   padding: 10px;
   border-radius: 5px;
   color: #fafafa;
-  font-weight: 500;
+  font-weight: 600;
   background-color: #8c0fdf;
+  transition: all .3s;
 }
 
 .input__search button.btn__disabled {
   background-color: #b087cb;
+  font-weight: 500;
 }
 
 .searched {

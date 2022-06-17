@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 export function getCountries() {
   return async function (dispatch) {
     try {
@@ -50,6 +49,12 @@ export function searchCountriesByName(name) {
 export function resetStateSearched() {
   return {
     type: "RESET_STATE_SEARCHED",
+  };
+}
+
+export function resetActivityCreated() {
+  return {
+    type: "RESET_ACTIVITY_CREATED",
   };
 }
 
@@ -113,3 +118,4 @@ export function filterByActivity(value) {
     payload: value,
   };
 }
+

@@ -15,7 +15,7 @@
   right: 0;
   left: 0;
   background-color: #000;
-  opacity: 0.4;
+  opacity: 0.35;
 }
 
 .landing__container {
@@ -44,4 +44,8 @@
   -webkit-box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.5);
   box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.5);
+}
+
+.landing__container img{
+  width: 22px;
 }

@@ -60,6 +60,12 @@ function rootReducer(state = initialState, action) {
         ...state,
         searchedCountries: [],
       };
+
+    case "RESET_ACTIVITY_CREATED":
+      return {
+        ...state,
+        postActivities: [],
+      };
     case "FILTER_BY_CONTINENT":
       let allCountries = state.allCountries;
       let continentFiltered =
@@ -99,11 +105,13 @@ function rootReducer(state = initialState, action) {
         ...state,
         countries: sortByPoblation,
       };
+
     case "GET_ACTIVITIES":
       return {
         ...state,
         activities: action.payload,
       };
+
     case "FILTER_BY_ACTIVITY":
       let allActivities = state.activities;
       let activitiesFiltered = allActivities.filter(
@@ -113,8 +121,8 @@ function rootReducer(state = initialState, action) {
         ...state,
         activitiesFiltered: activitiesFiltered,
       };
+
     case "CREATE_ACTIVITY":
-      console.log(action.payload);
       return {
         ...state,
         postActivities: action.payload,
@@ -124,4 +132,5 @@ function rootReducer(state = initialState, action) {
       return state;
   }
 }
+
 export default rootReducer;

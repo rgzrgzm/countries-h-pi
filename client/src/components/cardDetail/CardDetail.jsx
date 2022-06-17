@@ -46,14 +46,19 @@ const CardDetail = () => {
               <span>{countryById.subregion}</span>
             </div>
 
-            <div className={styles.cardDetail__info}>
+            <div className={`${styles.cardDetail__info} ${styles.activities}`}>
               <p>Activities:</p>
+              <span>
+                {countryById.Activities && `(${countryById.Activities.length})`}
+              </span>
             </div>
             {countryById.Activities && countryById.Activities.length === 0
               ? "Without Activities"
               : countryById.Activities &&
                 countryById.Activities.map((activity) => (
-                  <span key={activity.id}> - {activity.name}</span>
+                  <div className={styles.activities__list} key={activity.id}>
+                    {activity.name}
+                  </div>
                 ))}
           </div>
         </div>

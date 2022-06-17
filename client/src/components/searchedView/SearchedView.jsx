@@ -20,14 +20,15 @@ const SearchedView = ({ setIsSearched, searchedCountries }) => {
         alt="back__icon"
         onClick={() => setIsSearched(false)}
       />
-      {searchedCountries?.map((country) => (
-        <Card key={country.id} country={country} />
-      ))}
 
-      {searchedCountries.length === 0 && (
+      {searchedCountries.length === 0 ? (
         <div className={styles.searched__empty}>
-          <h2>City not found</h2>
+          <h2>Country not found</h2>
         </div>
+      ) : (
+        searchedCountries.map((country) => (
+          <Card key={country.id} country={country} />
+        ))
       )}
     </div>
   );

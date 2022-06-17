@@ -6,6 +6,7 @@ import {
   getCountries,
   searchCountriesByName,
   createActivity,
+  resetActivityCreated,
 } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import CreatedActivity from "../../components/createdActivity/CreatedActivity";
@@ -18,6 +19,8 @@ const CreateActivity = () => {
 
   useEffect(() => {
     dispatch(getCountries());
+
+    return () => dispatch(resetActivityCreated());
   }, [dispatch]);
 
   // INPUTS VALUES STATES
@@ -210,9 +213,17 @@ const CreateActivity = () => {
         <div className={styles.form__submit}>
           <button type="submit">Create Activity</button>
         </div>
-        
+
         {alert.msg && (
-          <p className={alert.type === "error" ? styles.text__error : alert.type === "success" ? styles.text__success : null}>
+          <p
+            className={
+              alert.type === "error"
+                ? styles.text__error
+                : alert.type === "success"
+                ? styles.text__success
+                : null
+            }
+          >
             {alert.msg}
           </p>
         )}

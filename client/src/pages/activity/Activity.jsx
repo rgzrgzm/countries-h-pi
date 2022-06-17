@@ -66,6 +66,7 @@ const Activity = () => {
                 ))}
 
               <hr />
+
             </div>
           ))}
       </div>
